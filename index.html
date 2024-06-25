@@ -23,6 +23,10 @@
     </style>
     <script>
         // define the callAPI function that takes a first name and last name as parameters
+        var setResult = (result)=>{
+            let elem = document.getElementById('result');
+            elem.body = JSON.parse(result.text());
+        }
         var callAPI = (availableLetters)=>{
             // instantiate a headers object
             var myHeaders = new Headers();
@@ -39,8 +43,7 @@
             };
             // make API call with parameters and use promises to get response
             fetch("https://cscxo2dv32.execute-api.us-west-2.amazonaws.com/dev", requestOptions)
-            .then(response => response.text())
-            .then(result => getElementById("result").body.set(JSON.parse(result).body))
+            .then(setResult)
             .catch(error => console.log('error', error));
         }
     </script>
