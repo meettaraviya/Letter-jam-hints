@@ -26,9 +26,11 @@ def lambda_handler(event, context):
     word_info_df = pd.DataFrame([{
         'word': word,
         'frequency': count_values.index(count) / len(count_values),
-        # 'ambiguity':get_ambiguity(word),
+        'ambiguity':get_ambiguity(word),
         'helpfulness': len(set(word))
         } for (word, count) in possible_word_counts])
+    
+    word_info_df = word_info_df.sort_values(["helpfulness", "ambiguity", "frequency"], ascending=[False, True, False]).head(25)
 
     return {
     'statusCode': 200,
