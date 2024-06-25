@@ -27,13 +27,13 @@
             let elem = document.getElementById('result');
             elem.innerHTML = JSON.parse(result);
         }
-        var callAPI = (availableLetters)=>{
+        var callAPI = async (availableLetters)=>{
             // instantiate a headers object
             var myHeaders = new Headers();
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"availableLetters":availableLetters});
+            var raw = JSON.stringify({"availableLetters":availableLetters.value});
             // create a JSON object with parameters for API call and store in a variable
             var requestOptions = {
                 method: 'POST',
@@ -42,10 +42,10 @@
                 redirect: 'follow'
             };
             // make API call with parameters and use promises to get response
-            fetch("https://cscxo2dv32.execute-api.us-west-2.amazonaws.com/dev", requestOptions)
-            .then(result => result.text())
-            .then(setResult)
-            .catch(error => console.log('error', error));
+            promise = fetch("https://cscxo2dv32.execute-api.us-west-2.amazonaws.com/dev", requestOptions)
+            .then(result => result.text()).catch(error => console.log('error', error));
+            setResult(await promise);
+            ;
         }
     </script>
 </head>
