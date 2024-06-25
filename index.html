@@ -25,7 +25,7 @@
         // define the callAPI function that takes a first name and last name as parameters
         var setResult = (result)=>{
             let elem = document.getElementById('result');
-            elem.innerHTML = JSON.parse(result);
+            elem.innerHTML = result['body'];
         }
         var callAPI = async (availableLetters)=>{
             // instantiate a headers object
