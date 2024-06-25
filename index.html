@@ -44,6 +44,7 @@
             // make API call with parameters and use promises to get response
             fetch("https://cscxo2dv32.execute-api.us-west-2.amazonaws.com/dev", requestOptions)
             .then(result => result.text())
+            .then(result => alert(JSON.parse(result)))
             .then(setResult)
             .catch(error => console.log('error', error));
         }
