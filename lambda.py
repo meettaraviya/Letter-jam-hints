@@ -1,9 +1,8 @@
 import json
-import joblib
 import urllib.request
 
-url = 'https://raw.githubusercontent.com/meettaraviya/Letter-jam-hints/main/word_count.joblib'
-word_counts = joblib.load(urllib.request.urlopen(url).read())
+url = 'https://raw.githubusercontent.com/meettaraviya/Letter-jam-hints/main/word_counts.json'
+word_counts = json.loads(urllib.request.urlopen(url).read().decode('utf-8'))
 
 def lambda_handler(event, context):
 
